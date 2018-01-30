@@ -1,1 +1,32 @@
-<%= @order.hashid %>
+<h1><%= @shop.name %></h1>
+<p>build date: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+<%= image_tag(@shop.menu) %>
+<br>
+<hr>
+
+<table>
+  <tbody>
+    <tr>
+      <th>名字</th>
+      <th>飲料</th>
+      <th>數量</th>
+      <th></th>
+    </tr>
+    <tr>
+      <%= form_for :entry, url: create_entry_path(@order) do |f| %>
+        <td><%= f.text_field :custumer %></td>
+        <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
+        <td><%= f.number_field :quantity, value: 1, min: 1 %></td>
+        <td><%= f.submit 'add' %></td>
+      <% end %>
+    </tr>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.custumer %></td>
+        <td><%= Drink.find(entry.drink_id).name %></td>
+        <td><%= entry.quantity %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
