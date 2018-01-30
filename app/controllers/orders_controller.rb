@@ -11,8 +11,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:hash_id])
+    @entries = @order.entries.includes(:drink)
     @shop = Shop.find(@order.shop_id)
-    @entries = @order.entries
   end
 
   def destroy

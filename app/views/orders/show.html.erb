@@ -23,7 +23,7 @@
     <% @entries.each do |entry| %>
       <tr>
         <td><%= entry.custumer %></td>
-        <td><%= Drink.find(entry.drink_id).name %></td>
+        <td><%= entry.drink.name %></td>
         <td><%= entry.quantity %></td>
         <td></td>
       </tr>
