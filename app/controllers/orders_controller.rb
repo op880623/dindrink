@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:show, :destroy]
 
   def create
     @order = Order.create(shop_id: params[:shop_id])
@@ -6,13 +7,21 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
     @entries = @order.entries.includes(:drink)
     @shop = Shop.find(@order.shop_id)
   end
 
   def destroy
+    @order.destroy
+    redirect_to root_path
+  end
+
+  private
+
+  def set_order
     @order = Order.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
   end
 
 end

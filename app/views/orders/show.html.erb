@@ -1,5 +1,6 @@
 <h1><%= @shop.name %></h1>
 <p>build date: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+<p><%= link_to 'delete', order_path, method: :delete %></p>
 <%= image_tag(@shop.menu) %>
 <br>
 <hr>
