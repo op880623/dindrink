@@ -2,13 +2,9 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(params.require(:entry).permit(:custumer, :drink_id, :quantity))
-    @entry.order = Order.find(params[:hash_id])
-    if @entry.save
-      redirect_back fallback_location: root_path
-    else
-      puts @entry.errors.full_messages.to_sentence
-      redirect_back fallback_location: root_path
-    end
+    @entry.order = Order.find(params[:order_id])
+    @entry.save
+    redirect_back fallback_location: root_path
   end
 
   def update

@@ -1,5 +1,5 @@
 <% @shops.each do |shop| %>
-  <%= link_to create_order_path(shop), method: :post do %>
+  <%= link_to shop_orders_path(shop), method: :post do %>
   <h3>訂<%= shop.name %></h3>
   <% end %>
 <% end %>

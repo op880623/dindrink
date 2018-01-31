@@ -13,7 +13,7 @@
       <th></th>
     </tr>
     <tr>
-      <%= form_for :entry, url: create_entry_path(@order) do |f| %>
+      <%= form_for :entry, url: order_entries_path(@order) do |f| %>
         <td><%= f.text_field :custumer %></td>
         <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
         <td><%= f.number_field :quantity, value: 1, min: 1 %></td>
