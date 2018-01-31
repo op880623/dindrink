@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_action :set_entry, only: [:update, :destroy]
 
   def create
     @entry = Entry.new(params.require(:entry).permit(:custumer, :drink_id, :quantity))
@@ -8,11 +9,18 @@ class EntriesController < ApplicationController
   end
 
   def update
-    @entry = Entry.find(params[:id])
   end
 
   def destroy
-    Entry.find(params[:id]).destroy
+    @entry.destroy
+    redirect_back fallback_location: root_path
+  end
+
+  private
+
+  def set_entry
+    @entry = Entry.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
     redirect_back fallback_location: root_path
   end
 
