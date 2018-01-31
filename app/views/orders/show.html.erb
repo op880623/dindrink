@@ -9,13 +9,24 @@
     <tr>
       <th>名字</th>
       <th>飲料</th>
+      <th>價錢</th>
       <th>數量</th>
       <th></th>
+    </tr>
+    <tr>
+      <%= form_for :drink, url: shop_drinks_path(@shop) do |f| %>
+        <td></td>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.number_field :price, min: 1 %></td>
+        <td></td>
+        <td><%= f.submit 'add' %></td>
+      <% end %>
     </tr>
     <tr>
       <%= form_for :entry, url: order_entries_path(@order) do |f| %>
         <td><%= f.text_field :custumer %></td>
         <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
+        <td></td>
         <td><%= f.number_field :quantity, value: 1, min: 1 %></td>
         <td><%= f.submit 'add' %></td>
       <% end %>
@@ -24,6 +35,7 @@
       <tr>
         <td><%= entry.custumer %></td>
         <td><%= entry.drink.name %></td>
+        <td><%= entry.drink.price %></td>
         <td><%= entry.quantity %></td>
         <td></td>
       </tr>
