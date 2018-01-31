@@ -6,5 +6,6 @@ Rails.application.routes.draw do
       resources :entries, only: [:create, :update, :destroy]
     end
     resources :drinks, only: :create
+    delete 'drink', to: "drinks#destroy"
   end
 end

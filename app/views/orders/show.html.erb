@@ -24,6 +24,15 @@
       <% end %>
     </tr>
     <tr>
+      <%= form_for :drink, url: shop_drink_path(@shop), method: :delete do |f| %>
+        <td></td>
+        <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
+        <td></td>
+        <td></td>
+        <td><%= f.submit '刪除飲料' %></td>
+      <% end %>
+    </tr>
+    <tr>
       <%= form_for :entry, url: order_entries_path(@order) do |f| %>
         <td><%= f.text_field :custumer %></td>
         <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
