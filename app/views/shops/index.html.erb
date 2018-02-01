@@ -1,5 +1,12 @@
 
 <div>
+  <%= form_tag root_path, method: :get do %>
+    <%= text_field_tag :search, params[:search], placeholder: '店家名稱' %>
+    <%= submit_tag '搜尋', name: nil %>
+  <% end %>
+</div>
+
+<div>
   <%= form_for :shop, url: shops_path, method: :post do |f| %>
     <%= f.text_field :name %>
     <%= f.submit '訂飲料' %>

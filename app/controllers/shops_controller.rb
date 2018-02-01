@@ -1,7 +1,11 @@
 class ShopsController < ApplicationController
 
   def index
-    @shops = Shop.all
+    if params[:search]
+      @shops = Shop.where(['name like ?', "%#{params[:search]}%"])
+    else
+      @shops = Shop.all
+    end
   end
 
   def create
