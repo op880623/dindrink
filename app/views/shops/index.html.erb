@@ -1,5 +1,14 @@
-<% @shops.each do |shop| %>
-  <%= link_to shop_orders_path(shop), method: :post do %>
-  <h3>訂<%= shop.name %></h3>
+
+<div>
+  <%= form_for :shop, url: shops_path, method: :post do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit '訂飲料' %>
   <% end %>
+</div>
+
+<% @shops.each do |shop| %>
+  <div>
+    <h3><%= shop.name %></h3>
+    <%= link_to "訂飲料", shop_orders_path(shop), method: :post %>
+  </div>
 <% end %>
