@@ -13,4 +13,12 @@ class ShopsController < ApplicationController
     @order = Order.create(shop_id: @shop.id)
     redirect_to order_path(@order.hashid)
   end
+
+  def update
+    @shop = Shop.find(params[:id])
+    @shop.menu = params.require(:shop)[:menu]
+    @shop.save
+    redirect_back fallback_location: root_path
+  end
+
 end

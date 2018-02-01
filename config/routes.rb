@@ -7,5 +7,8 @@ Rails.application.routes.draw do
     end
     resources :drinks, only: :create
     delete 'drink', to: "drinks#destroy"
+    member do
+      patch 'update'
+    end
   end
 end

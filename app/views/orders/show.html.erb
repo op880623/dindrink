@@ -2,6 +2,10 @@
 <p>build date: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
 <p><%= link_to 'delete', order_path, method: :delete %></p>
 <%= image_tag(@shop.menu) %>
+<%= form_for :shop, url: shop_path(@shop), method: :patch do |f| %>
+  <%= f.file_field :menu, mutiple: true %>
+  <%= f.submit '增加菜單' %>
+<% end %>
 <br>
 <hr>
 
