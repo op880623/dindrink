@@ -24,16 +24,20 @@ namespace :fake do
       '椰果奶茶', '仙草奶凍', '檸檬汁', '金桔檸檬', '檸檬梅子', '檸檬養樂多', '8冰茶',
       '鮮柚汁(季節限定)', '葡萄柚多多', '紅茶拿鐵', '綠茶拿鐵', '黃金烏龍拿鐵',
       '阿華田拿鐵', '可可芭蕾拿鐵']
+    option = {糖: ['正常糖', '半糖'], 冰:['正常冰', '去冰', '熱']}
+    json_option = JSON.dump(option)
     Shop.all.each do |shop|
       drinks.each do |drink|
         price = rand(7..12)*5
         Drink.create(name: "#{drink}(大)",
           price: price,
-          shop: shop
+          shop: shop,
+          option: json_option
         )
         Drink.create(name: "#{drink}(小)",
           price: price - 10,
-          shop: shop
+          shop: shop,
+          option: json_option
         )
       end
     end
