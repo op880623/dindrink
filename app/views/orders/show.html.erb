@@ -39,8 +39,8 @@
     <tr>
       <%= form_for :entry, url: order_entries_path(@order) do |f| %>
         <td><%= f.text_field :custumer %></td>
-        <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
-        <td></td>
+        <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, {id: "drink_id", onchange: "change_price();"} %></td>
+        <td id="price"></td>
         <td><%= f.number_field :quantity, value: 1, min: 1 %></td>
         <td><%= f.submit '訂飲料' %></td>
       <% end %>
