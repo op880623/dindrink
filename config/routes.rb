@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :orders, path: '', only: [:create, :show, :destroy], shallow: true do
       resources :entries, only: [:create, :update, :destroy]
     end
-    resources :drinks, only: :create
+    resources :drinks, only: [:index, :create]
     delete 'drink', to: "drinks#destroy"
     member do
       patch 'update'
