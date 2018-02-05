@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry, only: [:update, :destroy]
 
   def create
-    @entry = Entry.new(params.require(:entry).permit(:custumer, :drink_id, :quantity))
+    @entry = Entry.new(params.require(:entry).permit(:custumer, :drink_id, :quantity, :ice, :sugar))
     @entry.order = Order.find(params[:order_id])
     @entry.save
     redirect_back fallback_location: root_path

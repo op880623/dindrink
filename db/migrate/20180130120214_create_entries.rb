@@ -5,7 +5,8 @@ class CreateEntries < ActiveRecord::Migration[5.1]
       t.integer :drink_id
       t.integer :quantity
       t.integer :order_id
-      t.text :option
+      t.string :ice
+      t.string :sugar
 
       t.timestamps
     end

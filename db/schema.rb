@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 20180130120214) do
     t.integer "drink_id"
     t.integer "quantity"
     t.integer "order_id"
-    t.text "option"
+    t.string "ice"
+    t.string "sugar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

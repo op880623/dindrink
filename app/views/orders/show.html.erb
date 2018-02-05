@@ -15,7 +15,8 @@
       <th>名字</th>
       <th>飲料</th>
       <th>價錢</th>
-      <td>選項</td>
+      <td>糖</td>
+      <td>冰</td>
       <th>數量</th>
       <th>動作</th>
     </tr>
@@ -24,6 +25,7 @@
         <td></td>
         <td><%= f.text_field :name %></td>
         <td><%= f.number_field :price, min: 1 %></td>
+        <td></td>
         <td></td>
         <td></td>
         <td><%= f.submit '新增飲料' %></td>
@@ -36,6 +38,7 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
         <td><%= f.submit '刪除飲料' %></td>
       <% end %>
     </tr>
@@ -44,7 +47,8 @@
         <td><%= f.text_field :custumer %></td>
         <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, {id: "drink_id", onchange: "display_info();"} %></td>
         <td id="price"></td>
-        <td id="option"></td>
+        <td><%= f.select :sugar, ["正常甜", "少糖", "半糖", "微糖", "無糖"] %></td>
+        <td><%= f.select :ice, ["正常冰", "少冰", "半冰", "微冰", "去冰", "熱"] %></td>
         <td><%= f.number_field :quantity, value: 1, min: 1 %></td>
         <td><%= f.submit '訂飲料' %></td>
       <% end %>
@@ -54,7 +58,8 @@
         <td><%= entry.custumer %></td>
         <td><%= entry.drink.name %></td>
         <td><%= entry.drink.price %></td>
-        <td></td>
+        <td><%= entry.sugar %></td>
+        <td><%= entry.ice %></td>
         <td><%= entry.quantity %></td>
         <td><%= link_to '刪除', entry_path(entry), method: :delete %></td>
       </tr>
