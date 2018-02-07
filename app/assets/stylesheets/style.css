@@ -1,0 +1,12 @@
+.entry {
+  padding: 0;
+}
+
+.entry li, .entry a, .entry.form-inline * {
+  text-align: center;
+  display: inline-block;
+  width: 12%;
+  max-width: 12%;
+  height: auto;
+  margin-bottom: 10px;
+}

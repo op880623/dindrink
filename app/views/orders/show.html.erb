@@ -1,71 +1,90 @@
-<h1><%= @shop.name %></h1>
-<p>build date: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
-<p><%= link_to 'delete', order_path, method: :delete %></p>
-<%= image_tag(@shop.menu) %>
-<%= form_for :shop, url: shop_path(@shop), method: :patch do |f| %>
-  <%= f.file_field :menu, mutiple: true %>
-  <%= f.submit '增加菜單' %>
-<% end %>
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h1><%= @shop.name %></h1>
+      <p>build date: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+      <p><%= link_to 'delete', order_path, method: :delete %></p>
+    </div>
+    <div class="col-md-9">
+      <%= image_tag(@shop.menu) %>
+      <%= form_for :shop, url: shop_path(@shop), method: :patch do |f| %>
+        <%= f.file_field :menu, mutiple: true %>
+        <%= f.submit '增加菜單' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
 <hr>
 
-<table>
-  <tbody>
-    <tr>
-      <th>名字</th>
-      <th>飲料</th>
-      <th>價錢</th>
-      <td>糖</td>
-      <td>冰</td>
-      <th>數量</th>
-      <th>動作</th>
-    </tr>
-    <tr>
-      <%= form_for :drink, url: shop_drinks_path(@shop) do |f| %>
-        <td></td>
-        <td><%= f.text_field :name %></td>
-        <td><%= f.number_field :price, min: 1 %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><%= f.submit '新增飲料' %></td>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6">
+      <%= form_for :drink, url: shop_drinks_path(@shop), html: {class: "form-inline"} do |f| %>
+        <div class="form-group">
+          <%= f.label 'name', '飲料:' %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label 'price', '價格:' %>
+          <%= f.number_field :price, min: 1, class: "form-control" %>
+        </div>
+        <%= f.submit '新增飲料', class: "btn btn-primary" %>
       <% end %>
-    </tr>
-    <tr>
-      <%= form_for :drink, url: shop_drink_path(@shop), method: :delete do |f| %>
-        <td></td>
-        <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]} %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><%= f.submit '刪除飲料' %></td>
+    </div>
+
+    <div class="col-md-offset-2 col-md-4">
+      <%= form_for :drink, url: shop_drink_path(@shop), method: :delete, html: {class: "form-inline"} do |f| %>
+        <%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, class: "form-control" %>
+        <%= f.submit '刪除飲料', class: "btn btn-danger" %>
       <% end %>
-    </tr>
-    <tr>
-      <%= form_for :entry, url: order_entries_path(@order) do |f| %>
-        <td><%= f.text_field :custumer %></td>
-        <td><%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, {id: "drink_id", onchange: "display_info();"} %></td>
-        <td id="price"></td>
-        <td><%= f.select :sugar, ["正常甜", "少糖", "半糖", "微糖", "無糖"] %></td>
-        <td><%= f.select :ice, ["正常冰", "少冰", "半冰", "微冰", "去冰", "熱"] %></td>
-        <td><%= f.number_field :quantity, value: 1, min: 1 %></td>
-        <td><%= f.submit '訂飲料' %></td>
-      <% end %>
-    </tr>
-    <% @entries.each do |entry| %>
-      <tr>
-        <td><%= entry.custumer %></td>
-        <td><%= entry.drink.name %></td>
-        <td><%= entry.drink.price %></td>
-        <td><%= entry.sugar %></td>
-        <td><%= entry.ice %></td>
-        <td><%= entry.quantity %></td>
-        <td><%= link_to '刪除', entry_path(entry), method: :delete %></td>
-      </tr>
+    </div>
+
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<hr>
+
+<div class="container">
+  <div class="row">
+
+    <ul class="entry">
+      <li>名字</li>
+      <li>飲料</li>
+      <li>價錢</li>
+      <li>糖</li>
+      <li>冰</li>
+      <li>數量</li>
+    </ul>
+
+    <%= form_for :entry, url: order_entries_path(@order), html: {class: "form-inline entry"} do |f| %>
+      <%= f.text_field :custumer, class: "form-control" %>
+      <%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, {id: "drink_id", onchange: "display_info();", class: "form-control"} %>
+      <%= f.label :price, id: "price" %>
+      <%= f.select :sugar, ["正常甜", "少糖", "半糖", "微糖", "無糖"], {}, class: "form-control" %>
+      <%= f.select :ice, ["正常冰", "少冰", "半冰", "微冰", "去冰", "熱"], {}, class: "form-control" %>
+      <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
+      <%= f.submit '訂飲料', class: "btn btn-primary" %>
     <% end %>
-  </tbody>
-</table>
+
+    <% @entries.each do |entry| %>
+      <ul class="entry">
+        <li><%= entry.custumer %></li>
+        <li><%= entry.drink.name %></li>
+        <li><%= entry.drink.price %></li>
+        <li><%= entry.sugar %></li>
+        <li><%= entry.ice %></li>
+        <li><%= entry.quantity %></li>
+        <li onclick="update_entry(event, <%= entry.id %>)", class="btn btn-warning">修改</li>
+        <%= link_to '刪除', entry_path(entry), method: :delete, class: "btn btn-danger" %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
 
 <%= javascript_tag do %>
   get_drinks_info(<%= @shop.id %>);
