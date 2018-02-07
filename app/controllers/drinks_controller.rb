@@ -3,7 +3,7 @@ class DrinksController < ApplicationController
   def index
     info = {}
     Drink.where(shop_id: params[:shop_id]).each do |drink|
-      info[drink.id] = {price: drink.price, option: drink.option}
+      info[drink.id] = {name: drink.name, price: drink.price}
     end
     render json: info
   end

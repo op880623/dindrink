@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root "shops#index"
   resources :shops, path: '', only: [:index, :create] do
     resources :orders, path: '', only: [:create, :show, :destroy], shallow: true do
-      resources :entries, only: [:create, :update, :destroy]
+      resources :entries, only: [:create, :destroy] do
+        member do
+          post 'update'
+        end
+      end
     end
     resources :drinks, only: [:index, :create]
     delete 'drink', to: "drinks#destroy"

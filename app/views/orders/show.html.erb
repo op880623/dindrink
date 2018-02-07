@@ -62,7 +62,7 @@
 
     <%= form_for :entry, url: order_entries_path(@order), html: {class: "form-inline entry"} do |f| %>
       <%= f.text_field :custumer, class: "form-control" %>
-      <%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, {id: "drink_id", onchange: "display_info();", class: "form-control"} %>
+      <%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, {id: "drink_id", onchange: "display_price();", class: "form-control"} %>
       <%= f.label :price, id: "price" %>
       <%= f.select :sugar, ["正常甜", "少糖", "半糖", "微糖", "無糖"], {}, class: "form-control" %>
       <%= f.select :ice, ["正常冰", "少冰", "半冰", "微冰", "去冰", "熱"], {}, class: "form-control" %>
@@ -79,7 +79,7 @@
         <li><%= entry.ice %></li>
         <li><%= entry.quantity %></li>
         <li onclick="update_entry(event, <%= entry.id %>)", class="btn btn-warning">修改</li>
-        <%= link_to '刪除', entry_path(entry), method: :delete, class: "btn btn-danger" %>
+        <%= link_to '刪除', "entries/#{entry.id}", method: :delete, class: "btn btn-danger" %>
       </ul>
     <% end %>
   </div>
