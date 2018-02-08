@@ -35,11 +35,9 @@
       <% end %>
     </div>
 
-    <div class="col-md-offset-2 col-md-4">
-      <%= form_for :drink, url: shop_drink_path(@shop), method: :delete, html: {class: "form-inline"} do |f| %>
-        <%= f.select :drink_id, @shop.drinks.collect {|d| [d.name, d.id]}, {}, class: "form-control" %>
-        <%= f.submit '刪除飲料', class: "btn btn-danger" %>
-      <% end %>
+    <div class="col-md-offset-2 col-md-4 form-inline">
+      <%= select_tag :delete_drink_select, options_from_collection_for_select(@shop.drinks, :id, :name), class: "form-control" %>
+      <%= link_to '刪除飲料', "drinks/", method: :delete, id: "delete_drink_btn", class: "btn btn-danger" %>
     </div>
 
   </div>

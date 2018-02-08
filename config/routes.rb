@@ -9,8 +9,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :drinks, only: [:index, :create]
-    delete 'drink', to: "drinks#destroy"
+    resources :drinks, only: [:index, :create, :destroy], shallow: true
     member do
       patch 'update'
     end

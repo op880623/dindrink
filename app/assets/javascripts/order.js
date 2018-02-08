@@ -54,3 +54,10 @@ function get_drink_id_from_name(name) {
     }
   }
 }
+
+$(document).ready(function() {
+  $("#delete_drink_btn")[0].href = "drinks/" + $("#delete_drink_select")[0].value;
+  $("#delete_drink_select").change(function() {
+    $("#delete_drink_btn")[0].href = "drinks/" + $("#delete_drink_select")[0].value;
+  });
+});

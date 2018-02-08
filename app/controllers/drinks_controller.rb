@@ -18,7 +18,7 @@ class DrinksController < ApplicationController
   end
 
   def destroy
-    Drink.find(params.require(:drink)[:drink_id]).destroy
+    Drink.find(params[:id]).destroy
     redirect_back fallback_location: root_path
   end
 
