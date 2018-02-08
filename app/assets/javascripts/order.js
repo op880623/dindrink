@@ -1,30 +1,25 @@
 function display_price() {
-  drink = info[document.getElementById("drink_id").value];
-  document.getElementById("price").innerHTML = drink['price'];
+  drink = info[$("#drink_id")[0].value];
+  $("#price")[0].innerHTML = drink['price'];
 }
 
 function display_update_price() {
-  drink = info[document.getElementById("update_drink_id").value];
-  document.getElementById("update_price").innerHTML = drink['price'];
+  drink = info[$("#update_drink_id")[0].value];
+  $("#update_price")[0].innerHTML = drink['price'];
 }
 
 var info;
 
 function get_drinks_info(shop_id) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      info = JSON.parse(this.response);
-      display_price();
-    }
-  };
-  xhttp.open('GET', shop_id+'/drinks', true);
-  xhttp.send();
+  $.get(shop_id + '/drinks', function(data) {
+    info = data;
+    display_price();
+  });
 }
 
 function update_entry(event, entry_id) {
-  ul_tag = event.currentTarget.parentElement;
-  form_tag = document.getElementById("drink_id").parentElement.cloneNode(true);
+  ul_tag = event.target.parentElement;
+  form_tag = $("#drink_id")[0].parentElement.cloneNode(true);
   form_tag.action = 'entries/' + entry_id + '/update';
 
   form_tag.children[2].value = ul_tag.children[0].innerHTML;
