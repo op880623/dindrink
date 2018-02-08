@@ -18,6 +18,7 @@ function get_drinks_info(shop_id) {
 }
 
 function update_entry(event, entry_id) {
+  $("#cancel").click();
   ul_tag = event.target.parentElement;
   form_tag = $("#drink_id")[0].parentElement.cloneNode(true);
   form_tag.action = 'entries/' + entry_id + '/update';
@@ -32,8 +33,18 @@ function update_entry(event, entry_id) {
   form_tag.children[7].value = ul_tag.children[5].innerHTML;
   form_tag.children[8].value = '確定';
 
+  var btn = document.createElement("p");
+  btn.innerHTML = '取消';
+  btn.id = 'cancel';
+  btn.setAttribute('class', 'btn btn-default');
+  form_tag.appendChild(btn);
+
   ul_tag.parentElement.replaceChild(form_tag, ul_tag);
   display_update_price();
+
+  $("#cancel").click(function(event) {
+    form_tag.parentElement.replaceChild(ul_tag, form_tag);
+  });
 }
 
 function get_drink_id_from_name(name) {
