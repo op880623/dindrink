@@ -1,5 +1,6 @@
 .entry {
   padding: 0;
+  margin-bottom: 10px;
 }
 
 .entry li, .entry a, .entry.form-inline * {
@@ -8,5 +9,4 @@
   width: 12%;
   max-width: 12%;
   height: auto;
-  margin-bottom: 10px;
 }
