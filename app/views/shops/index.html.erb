@@ -1,21 +1,18 @@
+<div class="container">
+  <div class="row">
 
-<div>
-  <%= form_tag root_path, method: :get do %>
-    <%= text_field_tag :search, params[:search], placeholder: '店家名稱' %>
-    <%= submit_tag '搜尋', name: nil %>
-  <% end %>
-</div>
+    <div class="col-md-offset-1 col-md-10">
+      <h1 class="page-header">店家列表</h1>
+      <% @shops.each do |shop| %>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <h3><%= shop.name %></h3>
+            <p><%= shop.tel %></p>
+            <%= link_to "訂飲料", shop_orders_path(shop), method: :post, class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-<div>
-  <%= form_for :shop, url: shops_path, method: :post do |f| %>
-    <%= f.text_field :name %>
-    <%= f.submit '訂飲料' %>
-  <% end %>
-</div>
-
-<% @shops.each do |shop| %>
-  <div>
-    <h3><%= shop.name %></h3>
-    <%= link_to "訂飲料", shop_orders_path(shop), method: :post %>
   </div>
-<% end %>
+</div>

@@ -9,8 +9,32 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row">
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+          <%= link_to 'DinDrink', root_path, class: "navbar-brand" %>
+        </div>
+
+        <% if @shops %>
+          <div class="collapse navbar-collapse">
+            <%= form_tag root_path, method: :get, class: "navbar-form navbar-left" do %>
+              <%= text_field_tag :search, params[:search], placeholder: '店家名稱' %>
+              <%= submit_tag '搜尋', name: nil %>
+            <% end %>
+            <%= form_for :shop, url: shops_path, method: :post, html: {class: "navbar-form navbar-left"} do |f| %>
+              <%= f.text_field :name %>
+              <%= f.submit '訂飲料' %>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </nav>
+
   <body>
-    <h1><%= link_to 'DinDrink', root_path %></h1>
     <%= yield %>
   </body>
 </html>
