@@ -10,16 +10,19 @@ class DrinksController < ApplicationController
   end
 
   def create
-    @drink = Drink.new(params.require(:drink).permit(:name, :price))
-    @drink.shop_id = params[:shop_id]
-    if !@drink.save
-      puts @drink.errors.full_messages.to_sentence
+    if Shop.find(params[:shop_id]).custom
+      @drink = Drink.new(params.require(:drink).permit(:name, :price))
+      @drink.shop_id = params[:shop_id]
+      if !@drink.save
+        puts @drink.errors.full_messages.to_sentence
+      end
     end
     redirect_back fallback_location: root_path
   end
 
   def destroy
-    Drink.find(params[:id]).destroy
+    @drink = Drink.find(params[:id])
+    @drink.destroy if @drink.shop.custom
     redirect_back fallback_location: root_path
   end
 

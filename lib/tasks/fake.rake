@@ -6,7 +6,8 @@ namespace :fake do
       Shop.create(name: FFaker::Name.first_name,
         tel: FFaker::PhoneNumber.short_phone_number,
         address: FFaker::Address.street_address,
-        menu: Rails.root.join("public/350x350.png").open
+        menu: Rails.root.join("public/350x350.png").open,
+        custom: rand(0..1) == 0
       )
     end
     puts "create 10 shops"

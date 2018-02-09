@@ -7,10 +7,6 @@
     </div>
     <div class="col-md-9">
       <%= image_tag(@shop.menu) %>
-      <%= form_for :shop, url: shop_path(@shop), method: :patch do |f| %>
-        <%= f.file_field :menu, mutiple: true %>
-        <%= f.submit '增加菜單' %>
-      <% end %>
     </div>
   </div>
 </div>
@@ -18,33 +14,42 @@
 <div class="clearfix"></div>
 <hr>
 
-<div class="container">
-  <div class="row">
+<% if @shop.custom %>
+  <div id="edit" class="container">
+    <div class="row">
 
-    <div class="col-md-6">
-      <%= form_for :drink, url: shop_drinks_path(@shop), html: {class: "form-inline"} do |f| %>
-        <div class="form-group">
-          <%= f.label 'name', '飲料:' %>
-          <%= f.text_field :name, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label 'price', '價格:' %>
-          <%= f.number_field :price, min: 1, class: "form-control" %>
-        </div>
-        <%= f.submit '新增飲料', class: "btn btn-primary" %>
-      <% end %>
+      <div class="col-md-3">
+        <%= form_for :shop, url: shop_path(@shop), method: :patch do |f| %>
+          <%= f.file_field :menu, mutiple: true %>
+          <%= f.submit '更改菜單' %>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form_for :drink, url: shop_drinks_path(@shop), html: {class: "form-inline"} do |f| %>
+          <div class="form-group">
+            <%= f.label 'name', '飲料:' %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'price', '價格:' %>
+            <%= f.number_field :price, min: 1, class: "form-control" %>
+          </div>
+          <%= f.submit '新增飲料', class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+      <div class="col-md-3 form-inline">
+        <%= select_tag :delete_drink_select, options_from_collection_for_select(@shop.drinks, :id, :name), class: "form-control" %>
+        <%= link_to '刪除飲料', "drinks/", method: :delete, id: "delete_drink_btn", class: "btn btn-danger" %>
+      </div>
+
     </div>
-
-    <div class="col-md-offset-2 col-md-4 form-inline">
-      <%= select_tag :delete_drink_select, options_from_collection_for_select(@shop.drinks, :id, :name), class: "form-control" %>
-      <%= link_to '刪除飲料', "drinks/", method: :delete, id: "delete_drink_btn", class: "btn btn-danger" %>
-    </div>
-
   </div>
-</div>
 
-<div class="clearfix"></div>
-<hr>
+  <div class="clearfix"></div>
+  <hr>
+<% end %>
 
 <div class="container">
   <div class="row">
