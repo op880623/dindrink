@@ -10,6 +10,7 @@ class ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(params.require(:shop).permit(:name))
+    @shop.custom = true
     if !@shop.save
       puts @shop.errors.full_messages.to_sentence
       redirect_to root_path
