@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def show
     @entries = @order.entries.includes(:drink)
-    @shop = Shop.find(@order.shop_id)
+    @shop = @order.shop
   end
 
   def destroy

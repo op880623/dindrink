@@ -1,9 +1,8 @@
 class DrinksController < ApplicationController
 
   def index
-    @shop = Shop.find(Order.find(params[:shop_id]).shop_id)
     info = {}
-    @shop.drinks.each do |drink|
+    Order.find(params[:shop_id]).shop.drinks.each do |drink|
       info[drink.id] = {name: drink.name, price: drink.price}
     end
     render json: info
