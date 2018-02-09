@@ -10,8 +10,8 @@ function display_update_price() {
 
 var info;
 
-function get_drinks_info(shop_id) {
-  $.get(shop_id + '/drinks', function(data) {
+function get_drinks_info() {
+  $.get(window.location.pathname + '/drinks', function(data) {
     info = data;
     display_price();
   });
@@ -56,6 +56,7 @@ function get_drink_id_from_name(name) {
 }
 
 $(document).ready(function() {
+  get_drinks_info();
   $("#delete_drink_btn")[0].href = "drinks/" + $("#delete_drink_select")[0].value;
   $("#delete_drink_select").change(function() {
     $("#delete_drink_btn")[0].href = "drinks/" + $("#delete_drink_select")[0].value;
