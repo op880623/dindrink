@@ -8,6 +8,12 @@ function display_update_price() {
   $("#update_price")[0].innerHTML = drink['price'];
 }
 
+function display_conclusion() {
+  $.get(window.location.pathname + '/conclusion', function(data) {
+    $("#conclusion")[0].innerHTML = data;
+  });
+}
+
 var info;
 
 function get_drinks_info() {
@@ -57,6 +63,7 @@ function get_drink_id_from_name(name) {
 
 $(document).ready(function() {
   get_drinks_info();
+  display_conclusion();
   $("#delete_drink_btn")[0].href = "drinks/" + $("#delete_drink_select")[0].value;
   $("#delete_drink_select").change(function() {
     $("#delete_drink_btn")[0].href = "drinks/" + $("#delete_drink_select")[0].value;

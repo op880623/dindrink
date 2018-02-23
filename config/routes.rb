@@ -8,6 +8,9 @@ Rails.application.routes.draw do
           post 'update'
         end
       end
+      member do
+        get 'conclusion'
+      end
     end
     resources :drinks, only: [:index, :create, :destroy], shallow: true
     member do

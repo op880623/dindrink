@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :destroy, :conclusion]
 
   def create
     @order = Order.create(shop_id: params[:shop_id])
@@ -14,6 +14,10 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     redirect_to root_path
+  end
+
+  def conclusion
+    render plain: @order.conclusion
   end
 
   private
