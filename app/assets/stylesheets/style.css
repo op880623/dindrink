@@ -14,3 +14,6 @@ body {
   max-width: 12%;
   height: auto;
 }
+img {
+  width: 100%;
+}

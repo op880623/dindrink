@@ -8,6 +8,7 @@
           <div class="thumbnail">
             <h3><%= shop.name %></h3>
             <p><%= shop.tel %></p>
+            <p><%= shop.address %></p>
             <%= link_to "訂飲料", shop_orders_path(shop), method: :post, class: "btn btn-primary" %>
           </div>
         </div>

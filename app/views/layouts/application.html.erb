@@ -24,8 +24,8 @@
               <%= submit_tag '搜尋', name: nil %>
             <% end %>
             <%= form_for :shop, url: shops_path, method: :post, html: {class: "navbar-form navbar-left"} do |f| %>
-              <%= f.text_field :name %>
-              <%= f.submit '訂飲料' %>
+              <%= f.text_field :name, placeholder: '新增店家' %>
+              <%= f.submit '新增' %>
             <% end %>
           </div>
         <% end %>
