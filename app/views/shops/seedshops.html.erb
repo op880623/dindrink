@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-offset-1 col-md-10">
+      <h1 class="page-header">店家列表</h1>
+      <% @shops.each do |shop| %>
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= shop.name %></h3>
+            </div>
+            <div class="panel-body">
+              <%= image_tag(shop.menu) %>
+            </div>
+            <div class="panel-footer">
+              <%= form_for :shop, url: shop_path(shop), method: :patch do |f| %>
+                <%= f.file_field :menu, mutiple: true %>
+                <%= f.submit '更改菜單' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

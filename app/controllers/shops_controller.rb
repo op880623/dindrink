@@ -26,4 +26,8 @@ class ShopsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def seedshops
+    @shops = Shop.where(custom: false)
+  end
+
 end
