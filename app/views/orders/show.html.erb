@@ -70,7 +70,7 @@
       <%= f.label :price, id: "price" %>
       <%= f.select :sugar, ["正常甜", "少糖", "半糖", "微糖", "無糖"], {}, class: "form-control" %>
       <%= f.select :ice, ["正常冰", "少冰", "半冰", "微冰", "去冰", "熱"], {}, class: "form-control" %>
-      <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
+      <%= f.number_field :quantity, value: 1, min: 1, max: 10000, class: "form-control" %>
       <%= f.submit '訂飲料', class: "btn btn-primary" %>
     <% end %>
 
