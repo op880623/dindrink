@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-3">
       <h1><%= @shop.name %></h1>
-      <p>build date: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
-      <p><%= link_to 'delete', order_path, method: :delete %></p>
+      <p>訂單建立日期 : <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+      <p><%= link_to '刪除訂單', order_path, method: :delete, class: "btn btn-danger" %></p>
     </div>
     <div class="col-md-9">
       <%= image_tag(@shop.menu) %>
