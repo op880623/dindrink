@@ -14,8 +14,13 @@
             </div>
             <div class="panel-footer">
               <%= form_for :shop, url: shop_path(shop), method: :patch do |f| %>
-                <%= f.file_field :menu, mutiple: true %>
-                <%= f.submit '更改菜單' %>
+                <%= f.filestack_field :menu, '選擇菜單照片',
+                  pickerOptions: {
+                    'accept': 'image/*',
+                    'fromSources': 'local_file_system',
+                    'transformations': {}
+                  } %>
+                <%= f.submit '記得按送出' %>
               <% end %>
             </div>
           </div>
