@@ -15,7 +15,7 @@ shops.each do |shop|
   s = Shop.create(name: shop[:name],
     tel: shop[:tel],
     address: shop[:address],
-    menu: Rails.root.join(shop[:menu]).open,
+    menu: shop[:menu],
     custom: false
   )
   shop[:drinks].each do |drink, price|
