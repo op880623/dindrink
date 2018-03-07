@@ -35,7 +35,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'carrierwave', '= 1.2.1'
 gem 'filestack-rails', '~> 3.1.0'
 gem 'ffaker'
 gem 'hashid-rails', '~> 1.0'
