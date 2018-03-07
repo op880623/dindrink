@@ -35,8 +35,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# To avoid insecure version of rest-client
+gem "unirest", git: "https://github.com/Kong/unirest-ruby"
+# Use filestack to store img on it
 gem 'filestack-rails', '~> 3.1.0'
+# Create fake data
 gem 'ffaker'
+# Use hashid instead of id
 gem 'hashid-rails', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
