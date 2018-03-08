@@ -19,10 +19,7 @@
                     accept: 'image/*',
                     fromSources: ['local_file_system', 'url'],
                     maxFiles: 1,
-                    maxSize: 10240000,
-                    transformations: {
-                      crop: true
-                    }
+                    maxSize: 10240000
                   } %>
                 <%= f.submit '記得按送出' %>
               <% end %>
