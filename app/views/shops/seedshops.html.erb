@@ -16,9 +16,13 @@
               <%= form_for :shop, url: shop_path(shop), method: :patch do |f| %>
                 <%= f.filestack_field :menu, '選擇菜單照片',
                   pickerOptions: {
-                    'accept': 'image/*',
-                    'fromSources': 'local_file_system',
-                    'transformations': {}
+                    accept: 'image/*',
+                    fromSources: ['local_file_system', 'url'],
+                    maxFiles: 1,
+                    maxSize: 10240000,
+                    transformations: {
+                      crop: true
+                    }
                   } %>
                 <%= f.submit '記得按送出' %>
               <% end %>
